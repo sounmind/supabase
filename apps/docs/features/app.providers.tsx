@@ -1,6 +1,5 @@
 import { CommandMenuProvider } from '@ui-patterns/Cmdk'
 import { ThemeProvider } from 'common'
-import { PortalToast } from 'ui'
 import { type PropsWithChildren } from 'react'
 
 import SiteLayout from '~/layouts/SiteLayout'
@@ -10,6 +9,7 @@ import { ShortcutPreviewBuild } from './envs/staging.client'
 import { PageTelemetry } from './telemetry/telemetry.client'
 import { ScrollRestoration } from './ui/helpers.scroll.client'
 import { ThemeSandbox } from './ui/theme.client'
+import { SonnerToaster } from 'ui'
 
 /**
  * Global providers that wrap the entire app
@@ -25,7 +25,7 @@ function GlobalProviders({ children }: PropsWithChildren) {
             <CommandMenuProvider site="docs">
               <div className="flex flex-col">
                 <SiteLayout>
-                  <PortalToast />
+                  <SonnerToaster position="top-right" />
                   {children}
                 </SiteLayout>
                 <ThemeSandbox />
