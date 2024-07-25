@@ -100,14 +100,6 @@ const nextConfig = {
       type: 'javascript/auto',
     })
     /**
-     * Ignore node-specific modules used by transformers.js
-     */
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      sharp$: false,
-      'onnxruntime-node$': false,
-    }
-    /**
      * `pglite` conditionally loads node modules `fs`, `module`, `path`, and
      * `stream/promises`, which webpack tries unsuccessfully to bundle for the
      * browser.
@@ -120,6 +112,14 @@ const nextConfig = {
         contextRegExp: /pglite\/dist$/,
       })
     )
+    /**
+     * Ignore node-specific modules used by transformers.js
+     */
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      sharp$: false,
+      'onnxruntime-node$': false,
+    }
     return config
   },
   async headers() {
