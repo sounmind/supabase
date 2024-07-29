@@ -10,7 +10,7 @@ import {
 import { noop } from 'lodash'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
-import { toast } from 'react-hot-toast'
+import { toast } from 'sonner'
 import { Button } from 'ui'
 
 interface ConsentToastProps {
@@ -63,10 +63,9 @@ export const ConsentToast = ({ onAccept = noop, onOptOut = noop }: ConsentToastP
   )
 }
 
-// Use with PortalToast from 'ui/src/layout/PortalToast'
 export const useConsent = () => {
   const { TELEMETRY_CONSENT } = LOCAL_STORAGE_KEYS
-  const consentToastId = useRef<string>()
+  const consentToastId = useRef<string | number>()
   const isClient = typeof window !== 'undefined'
   if (!isClient) return {}
   const telemetryProps = useTelemetryProps()
@@ -104,8 +103,7 @@ export const useConsent = () => {
           id: 'consent-toast',
           position: 'bottom-right',
           duration: Infinity,
-          className:
-            '!w-screen !-m-4 !border-t !rounded-none !max-w-none !bg-overlay !text sm:!m-0 sm:!rounded-lg sm:!w-auto sm:!max-w-[400px] sm:border',
+          closeButton: true,
         }
       )
     }
